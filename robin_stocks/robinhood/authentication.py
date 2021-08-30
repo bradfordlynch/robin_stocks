@@ -73,6 +73,8 @@ def login(username=None, password=None, expiresIn=86400, scope='internal', by_sm
     :type store_session: Optional[boolean]
     :param mfa_code: MFA token if enabled.
     :type mfa_code: Optional[str]
+    :param cred_path: Path to save pickled login session.
+    :type cred_path: Optional[str]
     :returns:  A dictionary with log in information. The 'access_token' keyword contains the access token, and the 'detail' keyword \
     contains information on whether the access token was generated or loaded from pickle file.
 
