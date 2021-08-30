@@ -50,7 +50,7 @@ def respond_to_challenge(challenge_id, sms_code):
     return(request_post(url, payload))
 
 
-def login(username=None, password=None, expiresIn=86400, scope='internal', by_sms=True, store_session=True, mfa_code=None):
+def login(username=None, password=None, expiresIn=86400, scope='internal', by_sms=True, store_session=True, mfa_code=None, cred_path="~"):
     """This function will effectively log the user into robinhood by getting an
     authentication token and saving it to the session header. By default, it
     will store the authentication token in a pickle file and load that value
@@ -78,7 +78,10 @@ def login(username=None, password=None, expiresIn=86400, scope='internal', by_sm
 
     """
     device_token = generate_device_token()
-    home_dir = os.path.expanduser("~")
+    if cred_path == "~":
+        home_dir = os.path.expanduser("~")
+    else:
+        home_dir = cred_path
     data_dir = os.path.join(home_dir, ".tokens")
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
